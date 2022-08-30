@@ -22,7 +22,7 @@ abstract class MongoModel<T> implements IModel<T> {
     return this._model.findOne({ _id });
   }
 
-  public async update(_id:string, obj:T): Promise<T | null> {
+  public async update(_id:string, obj:Partial<T>): Promise<T | null> {
     return this._model.findOneAndUpdate({ _id }, obj, { new: true });
   }
 
