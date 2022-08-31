@@ -15,7 +15,6 @@ abstract class MongoModel<T> implements IModel<T> {
 
   public async read(): Promise<T[]> {
     // console.log('==== CHECKPOINT 3 ====');
-
     return this._model.find();
   }
 

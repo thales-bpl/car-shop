@@ -11,16 +11,8 @@ class CarService implements IService<ICar> {
     this._carModel = model;
   }
 
-  public async create(obj: ICar): Promise<ICar> {
-    const parsed = carSchema.safeParse(obj);
-    if (!parsed.success) throw parsed.error;
-
-    return this._carModel.create(obj);
-  }
-
   public async read(): Promise<ICar[]> {
     // console.log('==== CHECKPOINT 2 ====');
-
     const allCars = await this._carModel.read();
     return allCars;
   }
@@ -32,6 +24,13 @@ class CarService implements IService<ICar> {
     if (!targetCar) throw new Error(ErrorTypes.EntityNotFound);
 
     return targetCar;
+  }
+
+  public async create(obj: ICar): Promise<ICar> {
+    const parsed = carSchema.safeParse(obj);
+    if (!parsed.success) throw parsed.error;
+
+    return this._carModel.create(obj);
   }
 
   public async update(_id: string, obj: ICar): Promise<ICar> {
