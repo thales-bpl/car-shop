@@ -1,4 +1,3 @@
-// import { isValidObjectId } from 'mongoose';
 import { IModel } from '../interfaces/IModel';
 import { IService } from '../interfaces/IService';
 import { ICar, carSchema } from '../interfaces/ICar';
@@ -17,8 +16,6 @@ class CarService implements IService<ICar> {
   }
 
   public async readOne(_id: string): Promise<ICar> {
-    // if (!isValidObjectId(_id)) throw new Error(ErrorTypes.InvalidMongoId);
-
     const targetCar = await this._carModel.readOne(_id);
     if (!targetCar) throw new Error(ErrorTypes.ObjectNotFound);
 
@@ -33,8 +30,6 @@ class CarService implements IService<ICar> {
   }
 
   public async update(_id: string, obj: ICar): Promise<ICar | null> {
-    // if (!isValidObjectId(_id)) throw new Error(ErrorTypes.InvalidMongoId);
-
     const parsed = carSchema.safeParse(obj);
     if (!parsed.success) throw parsed.error;
 
@@ -45,8 +40,6 @@ class CarService implements IService<ICar> {
   }
 
   public async delete(_id: string): Promise<ICar | null> {
-    // if (!isValidObjectId(_id)) throw new Error(ErrorTypes.InvalidMongoId);
-
     const deletedCar = await this._carModel.delete(_id);
     if (!deletedCar) throw new Error(ErrorTypes.ObjectNotFound);
 
