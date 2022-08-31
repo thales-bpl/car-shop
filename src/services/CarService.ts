@@ -21,7 +21,7 @@ class CarService implements IService<ICar> {
     // if (!isValidObjectId(_id)) throw new Error(ErrorTypes.InvalidMongoId);
 
     const targetCar = await this._carModel.readOne(_id);
-    if (!targetCar) throw new Error(ErrorTypes.EntityNotFound);
+    if (!targetCar) throw new Error(ErrorTypes.ObjectNotFound);
 
     return targetCar;
   }
@@ -40,7 +40,7 @@ class CarService implements IService<ICar> {
     if (!parsed.success) throw parsed.error;
 
     const updatedCar = await this._carModel.update(_id, obj);
-    if (!updatedCar) throw new Error(ErrorTypes.EntityNotFound);
+    if (!updatedCar) throw new Error(ErrorTypes.ObjectNotFound);
 
     return updatedCar;
   }
@@ -49,7 +49,7 @@ class CarService implements IService<ICar> {
     // if (!isValidObjectId(_id)) throw new Error(ErrorTypes.InvalidMongoId);
 
     const deletedCar = await this._carModel.delete(_id);
-    if (!deletedCar) throw new Error(ErrorTypes.EntityNotFound);
+    if (!deletedCar) throw new Error(ErrorTypes.ObjectNotFound);
 
     return deletedCar;
   }

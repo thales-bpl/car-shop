@@ -6,10 +6,7 @@ class CarController {
   constructor(private _service: IService<ICar>) {}
 
   public async read(_req: Request, res: Response<ICar[]>) {
-    // console.log('==== CHECKPOINT 1 ====');
     const result = await this._service.read();
-    // console.log('==== CHECKPOINT 4 ====');
-
     return res.status(200).json(result);
   }
 
