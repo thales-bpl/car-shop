@@ -23,6 +23,8 @@ const errorHandler: ErrorRequestHandler = (
   res: Response,
   _next: NextFunction,
 ) => {
+  console.log(err.stack);
+
   if (err instanceof ZodError) {
     return res.status(400).json({ message: err.issues });
   }

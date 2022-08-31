@@ -13,7 +13,7 @@ route
   .get('/cars', carController.read)
   .get('/cars/:id', carController.readOne)
   .post('/cars', carController.create)
-  .patch('/cars', carController.update)
-  .delete('/cars', carController.delete);
+  .put('/cars/:id', carController.update)
+  .delete('/cars/:id', carController.delete);
 
 export default route;

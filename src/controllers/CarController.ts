@@ -5,14 +5,11 @@ import { ICar } from '../interfaces/ICar';
 class CarController {
   constructor(private _service: IService<ICar>) {}
 
-  public async create(req: Request & { body: ICar }, res: Response<ICar>) {
-    const { body: car } = req;
-    const result = await this._service.create(car);
-    return res.status(201).json(result);
-  }
-
   public async read(_req: Request, res: Response<ICar[]>) {
+    // console.log('==== CHECKPOINT 1 ====');
     const result = await this._service.read();
+    // console.log('==== CHECKPOINT 4 ====');
+
     return res.status(200).json(result);
   }
 
@@ -20,6 +17,12 @@ class CarController {
     const { id } = req.params;
     const result = await this._service.readOne(id) as ICar;
     return res.status(200).json(result);
+  }
+
+  public async create(req: Request & { body: ICar }, res: Response<ICar>) {
+    const { body: car } = req;
+    const result = await this._service.create(car);
+    return res.status(201).json(result);
   }
 
   public async update(req: Request, res: Response<ICar>) {
