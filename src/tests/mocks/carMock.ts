@@ -1,5 +1,15 @@
 import { ICar } from '../../interfaces/ICar';
 
+const postCarReq = {
+  _id: '5d6ede6a0ba62570afcedd3a',
+  model: 'Conversível Sport Bolado',
+  year: 1964,
+  color: 'red',
+  buyValue: 5000,
+  seatsQty: 2,
+  doorsQty: 2
+}
+
 const carMock: ICar = {
   model: 'Conversível Sport Bolado',
   year: 1964,
@@ -64,4 +74,5 @@ export {
   carMockWithId,
   allCarsMock,
   allCarsMockWithId,
+  postCarReq,
 }
