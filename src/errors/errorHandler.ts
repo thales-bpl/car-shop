@@ -1,18 +1,3 @@
-// import ErrorFactory from './errorFactory';
-
-// const errorHandler = (
-//   err: ErrorFactory,
-//   _req: Request,
-//   res: Response,
-//   _next: NextFunction,
-// ) => {
-//   console.error(err.stack);
-
-//   if (err.status) return res.status(err.status).json({ message: err.message });
-//   return res.status(500).json({ message: 'Internal Server Error' });
-// };
-
-// export default errorHandler;
 import { Request, Response, NextFunction, ErrorRequestHandler } from 'express';
 import { ZodError } from 'zod';
 import { ErrorTypes, errorCatalog } from './catalog';

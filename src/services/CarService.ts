@@ -12,7 +12,6 @@ class CarService implements IService<ICar> {
   }
 
   public async read(): Promise<ICar[]> {
-    // console.log('==== CHECKPOINT 2 ====');
     const allCars = await this._carModel.read();
     return allCars;
   }
@@ -33,16 +32,16 @@ class CarService implements IService<ICar> {
     return this._carModel.create(obj);
   }
 
-  public async update(_id: string, obj: ICar): Promise<ICar> {
+  public async update(_id: string, obj: ICar): Promise<ICar | null> {
     // if (!isValidObjectId(_id)) throw new Error(ErrorTypes.InvalidMongoId);
 
     const parsed = carSchema.safeParse(obj);
     if (!parsed.success) throw parsed.error;
 
-    const updatedCar = await this._carModel.update(_id, obj);
-    if (!updatedCar) throw new Error(ErrorTypes.ObjectNotFound);
-
-    return updatedCar;
+    const targetCar = await this._carModel.readOne(_id);
+    if (!targetCar) throw new Error(ErrorTypes.ObjectNotFound);
+    
+    return this._carModel.update(_id, obj);
   }
 
   public async delete(_id: string): Promise<ICar | null> {
